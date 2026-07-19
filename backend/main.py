@@ -7,7 +7,7 @@ app = FastAPI(title="Solo Fit API")
 
 # Comma-separated list in env, e.g.
 # CORS_ORIGINS=http://localhost:5173,https://solo-fit.vercel.app
-_raw_origins = os.getenv("CORS_ORIGINS", "https://solo-monarch-backend.vercel.app")
+_raw_origins = os.getenv("CORS_ORIGINS", "https://solo-monarch-frontend-rho.vercel.app")
 allow_origins = [o.strip() for o in _raw_origins.split(",") if o.strip()]
 
 app.add_middleware(
