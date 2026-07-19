@@ -1,4 +1,4 @@
-mport { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import RankBadge from "../components/RankBadge";
 import StreakRing from "../components/StreakRing";
 import ExerciseTargetCard from "../components/ExerciseTargetCard";
