@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import { useAuth } from "../context/AuthContext";
+import GlitchButton from "../components/GlitchButton";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -25,27 +27,47 @@ export default function Login() {
   }
 
   return (
-    <div className="center-screen">
-      <div className="panel auth-card">
-        <div className="eyebrow">System</div>
-        <h1 style={{ margin: "6px 0 24px" }}>Hunter Login</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="field">
-            <label>Email</label>
-            <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
-          </div>
-          <div className="field">
-            <label>Password</label>
-            <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} />
-          </div>
-          {error && <div className="error-text">{error}</div>}
-          <button className="btn primary block mt-16" disabled={loading}>
-            {loading ? "Verifying..." : "Enter the Gate"}
-          </button>
-        </form>
-        <p className="muted mt-16">
-          New hunter? <Link to="/signup" style={{ color: "#58d6ff" }}>Create an account</Link>
-        </p>
+    <div className="container">
+      <div className="auth-wrap">
+        <motion.div className="auth-copy"
+          initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.7, 0, 0.2, 1] }}>
+          <div className="kicker">◇ Access Gate · Verify Hunter</div>
+          <h1>Welcome<br/><em>back, hunter.</em></h1>
+          <p>The System remembers you. Log the last streak — or begin a new one. The Monarch waits for no one.</p>
+        </motion.div>
+
+        <motion.div className="hud auth-card"
+          initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.1, ease: [0.7, 0, 0.2, 1] }}>
+          <span className="corner tl" /><span className="corner tr" />
+          <span className="corner bl" /><span className="corner br" />
+
+          <div className="hud-tag"><span className="dot" />Hunter Login</div>
+
+          <form onSubmit={handleSubmit} style={{ marginTop: 24 }}>
+            <div className="field">
+              <label>Email</label>
+              <input type="email" required value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="hunter@system.io" autoComplete="email" />
+            </div>
+            <div className="field">
+              <label>Password</label>
+              <input type="password" required value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••" autoComplete="current-password" />
+            </div>
+            {error && <div className="error-text">▲ {error}</div>}
+            <GlitchButton variant="primary" className="block mt-16" disabled={loading} arrow>
+              {loading ? "Verifying…" : "Enter the Gate"}
+            </GlitchButton>
+          </form>
+
+          <p className="muted mt-24" style={{ fontFamily: "var(--f-mono)", fontSize: 12, letterSpacing: "0.14em", textTransform: "uppercase" }}>
+            New hunter? <Link to="/signup" className="link">Create an account →</Link>
+          </p>
+        </motion.div>
       </div>
     </div>
   );
