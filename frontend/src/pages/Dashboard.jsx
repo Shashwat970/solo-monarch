@@ -16,7 +16,10 @@ export default function Dashboard() {
   const [submitting, setSubmitting] = useState(false);
   const { refreshProfile } = useAuth();
 
-  async function load() {
+const [loadError, setLoadError] = useState("");
+
+async function load() {
+  try {
     const today = await api.today();
     setData(today);
     if (today.today_progress) {
@@ -27,7 +30,10 @@ export default function Dashboard() {
         plank_seconds: today.today_progress.plank_seconds,
       });
     }
+  } catch (err) {
+    setLoadError(err.message || "Could not reach the System.");
   }
+}
 
   useEffect(() => { load(); }, []);
 
@@ -43,8 +49,8 @@ export default function Dashboard() {
     }
   }
 
-  if (!data) return <div className="loading-screen">Loading System Data…</div>;
-
+if (loadError) return <div className="loading-screen">▲ {loadError} <br/><span className="muted" style={{fontSize:14}}>Try refreshing, or log in again.</span></div>;
+if (!data) return <div className="loading-screen">Loading System Data…</div>;
   const alreadyLogged = !!data.today_progress;
 
   return (

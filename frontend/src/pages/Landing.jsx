@@ -3,7 +3,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import HeroReveal from "../components/HeroReveal";
 import GlitchButton from "../components/GlitchButton";
-import Marquee from "../components/Marquee";
 
 const RANKS = [
   { rank: "E", name: "Awakened Novice", req: "Day 0 · Threshold", gold: false },
@@ -79,8 +78,6 @@ export default function Landing() {
           </div>
         </div>
       </section>
-
-      <Marquee items={["Arise, Hunter", "The weak have no will", "Log the quest", "Break the mirror", "Ascend or Reset"]} />
 
       <section className="chapter">
         <div className="container">
