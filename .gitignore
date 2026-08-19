@@ -3,11 +3,6 @@ node_modules/
 dist/
 .vite/
 
-# Env files
-.env
-.env.*
-!.env.example
-
 # Vercel
 .vercel/
 
@@ -15,11 +10,5 @@ dist/
 .vscode/
 .idea/
 .DS_Store
-
-frontend/
-.env
-
-backend/
-.env
 
 supabase/*
