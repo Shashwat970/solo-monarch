@@ -21,3 +21,6 @@ frontend/
 
 backend/
 .env
+
+supabase/
+schema.sql
